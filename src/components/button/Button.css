@@ -1,0 +1,18 @@
+.button {
+    --greyDark: #313131;
+    --whiteEgg: #f9f9f9;
+    font-weight: bold;
+    padding: 8px 16px;
+}
+
+.button--light {
+    background-color: var(--whiteEgg);
+    border: 2px solid var(--greyDark);
+    color: var(--greyDark);
+}
+
+.button--dark {
+    background-color: var(--greyDark);
+    border: 2px solid var(--whiteEgg);
+    color: var(--whiteEgg);
+}
