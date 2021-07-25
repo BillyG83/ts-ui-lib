@@ -1,0 +1,25 @@
+h1 {
+  margin: 12px 0 24px;
+  text-align: center;
+  width: 100%;
+}
+
+h2 {
+  margin-top: 36px;
+  margin-bottom: 12px;
+}
+
+.info {
+  background-color: var(--whiteEgg);
+  padding: 8px;
+  margin-bottom: 20px;
+  margin-top: 12px;
+}
+
+ul {
+  padding: 8px 4px 12px 20px;
+}
+
+p + p {
+  margin-top: 12px;
+}
