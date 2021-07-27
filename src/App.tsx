@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 
+import { Form } from './components/form/Form';
+
 const App: React.FC = () => {
   return (
     <div className="App">
@@ -10,7 +12,7 @@ const App: React.FC = () => {
           Hello Typescript!
         </h1>
 
-
+        <Form />
       </header>
     </div>
   );
