@@ -3,28 +3,34 @@ import './Button.css'
 
 interface Props {
     buttonId: string,
+    buttonType?: 'button' | 'submit' | 'reset' | undefined,
     clickHandle: (id: string) => void,
     disabled?: boolean,
     text?: string,
     theme?: 'dark' | 'light',
 }
 
-export const Button: React.FC<Props> = ({
+export const Button = ({
     buttonId,
+    buttonType = 'button',
+    clickHandle,
     disabled,
     text='click',
     theme='light',
-    clickHandle,
-}) => {
-    const buttonClicked: React.MouseEventHandler = (event) => {
-        clickHandle(event.currentTarget.id)
+}: Props) => {
+    const buttonClicked = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+        clickHandle(event?.currentTarget?.id)
     }
     return (
-    <button 
-        className={`button button--${theme}`}
-        onClick={buttonClicked} 
-        id={buttonId}
-        data-testid={buttonId}
-        disabled={disabled}
-    >{text}</button>
-)}
+        <button
+            className={`button button--${theme}`}
+            onClick={event => buttonClicked(event)} 
+            id={buttonId}
+            data-testid={buttonId}
+            disabled={disabled}
+            type={buttonType}
+        >
+            {text}
+        </button>
+    )
+}
