@@ -17,7 +17,7 @@ const initialData: UserInterface = {
     sex: ''
 }
 
-const Form = () => {
+const Form: React.FC = () => {
     const [ user, setUser ] = useState<UserInterface>(initialData)
 
     const handleClick = (data: string) => {
