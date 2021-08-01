@@ -1,7 +1,7 @@
 import React from 'react'
 import './Input.css'
 
-interface InputProps {
+interface Props {
     inputId: string,
     inputLabel?: string,
     inputName: string,
@@ -16,7 +16,7 @@ interface InputProps {
     ) => void
 }
 
-const Input = ({
+const Input: React.FC<Props> = ({
     inputId,
     inputLabel,
     inputName,
@@ -24,7 +24,7 @@ const Input = ({
     inputType = 'text',
     inputValue,
     valueChanged,
-}: InputProps) => {
+}: Props) => {
 
     const isCheckbox: boolean = Boolean(
         inputType === 'checkbox'
@@ -40,7 +40,7 @@ const Input = ({
         )
     }
 
-    const renderInput = () => (
+    const renderInput = (): JSX.Element => (
         <input
             id={inputId}
             name={inputName}
@@ -51,7 +51,7 @@ const Input = ({
         />
     )
 
-    const renderCheckbox = () => (
+    const renderCheckbox = (): JSX.Element => (
         <input
             id={inputId}
             name={inputName}
