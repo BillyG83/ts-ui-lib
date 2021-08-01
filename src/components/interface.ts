@@ -1,13 +1,14 @@
 export interface AddressInterface {
-    street: string,
     number: number,
+    street: string,
     zip: string,
 }
 
 export interface UserInterface {
-    name: string,
-    age: number,
-    country: string,
     address: AddressInterface,
     admin: boolean,
+    age: number,
+    country: string,
+    name: string,
+    sex: string,
 }
