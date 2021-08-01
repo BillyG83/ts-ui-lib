@@ -10,7 +10,7 @@ interface Props {
     theme?: 'dark' | 'light',
 }
 
-export const Button = ({
+const Button = ({
     buttonId,
     buttonType = 'button',
     clickHandle,
@@ -34,3 +34,5 @@ export const Button = ({
         </button>
     )
 }
+
+export default Button
