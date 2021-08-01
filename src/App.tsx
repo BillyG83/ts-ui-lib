@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import { Form } from './components/form/Form';
+import Form from './components/form/Form';
 
 const App: React.FC = () => {
   return (
