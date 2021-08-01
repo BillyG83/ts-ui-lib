@@ -1,4 +1,5 @@
 import React from 'react'
+import './Input.css'
 
 interface InputProps {
     inputId: string,
@@ -7,10 +8,15 @@ interface InputProps {
     inputPlaceholder?: string,
     inputType?: 'text' | 'password' | 'number' | 'radio' | 'checkbox',
     inputValue?: string | number,
-    valueChanged?: (id: string, value: string) => void
+    valueChanged?: (
+        type: string,
+        id: string, 
+        value: string, 
+        checked: boolean
+    ) => void
 }
 
-export const Input = ({
+const Input = ({
     inputId,
     inputLabel,
     inputName,
@@ -20,23 +26,56 @@ export const Input = ({
     valueChanged,
 }: InputProps) => {
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        valueChanged && valueChanged(event?.currentTarget?.name, event?.currentTarget?.value)
+    const isCheckbox: boolean = Boolean(
+        inputType === 'checkbox'
+        || inputType === 'radio'
+    )
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {        
+        valueChanged && valueChanged(
+            inputType,
+            event?.currentTarget?.name,
+            event?.currentTarget?.value,
+            event?.currentTarget?.checked,
+        )
     }
 
-    return(
-        <>
-            <label htmlFor={inputId}>
-                {inputLabel}
-            </label>
-            <input
-                id={inputId}
-                name={inputName}
-                onChange={handleChange}
-                placeholder={inputPlaceholder}
-                type={inputType} 
-                value={inputValue}
-            />
-        </>
+    const renderInput = () => (
+        <input
+            id={inputId}
+            name={inputName}
+            onChange={handleChange}
+            placeholder={inputPlaceholder}
+            type={inputType} 
+            value={inputValue}
+        />
+    )
+
+    const renderCheckbox = () => (
+        <input
+            id={inputId}
+            name={inputName}
+            onChange={handleChange}
+            type={inputType}
+            value={inputValue}
+        />
+    )
+
+    return (
+        <div className="input">
+            {
+                inputLabel
+                ? <label htmlFor={inputId}>{inputLabel}</label>
+                : ''
+            }
+
+            {
+                !isCheckbox 
+                ? renderInput()
+                : renderCheckbox()
+            }
+        </div>
     )
 }
+
+export default Input
