@@ -10,7 +10,7 @@ interface Props {
     theme?: 'dark' | 'light',
 }
 
-const Button = ({
+const Button: React.FC<Props> = ({
     buttonId,
     buttonType = 'button',
     clickHandle,
