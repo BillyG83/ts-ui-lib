@@ -1,0 +1,28 @@
+.hero {
+    align-items: center;
+    background-color: rgb(54, 123, 147);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    padding: 32px;
+    text-align: center;
+    width: 100vw;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.hero h1 {
+    color: white;
+    display: block;
+    margin: 0 0 12px 0;
+}
+
+.hero p {
+    color: white;
+    display: block;
+    margin: 0;
+}

@@ -52,6 +52,14 @@ const Form: React.FC = () => {
                 valueChanged={inputValueChanged}
             />
             <Input 
+                inputId="password-input"
+                inputLabel="add a password"
+                inputName="password"
+                inputPlaceholder="password"
+                inputType="password"
+                valueChanged={inputValueChanged}
+            />
+            <Input 
                 inputId="age-input"
                 inputLabel="enter your age"
                 inputName="age"
