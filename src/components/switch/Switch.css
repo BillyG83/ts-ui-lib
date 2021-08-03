@@ -1,0 +1,19 @@
+.switch {
+    display: block;
+}
+
+.switch__ui {
+    display: block;
+}
+
+.switch__toggle {
+    display: block;
+}
+
+.switch--on .switch__toggle {
+    left: 100%;
+}
+
+.switch--off .switch__toggle {
+    left: 0%;
+}
