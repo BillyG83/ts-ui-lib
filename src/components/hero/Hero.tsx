@@ -7,6 +7,9 @@ interface Props {
     backgroundColor?: string,
     backgroundImage?: string,
     maxHeight?: string,
+    children: JSX.Element | JSX.Element[];
+    filterColor?: string,
+    filterOpacity?: number
 }
 
 const Hero: React.FC<Props> = ({
@@ -15,6 +18,9 @@ const Hero: React.FC<Props> = ({
     backgroundImage,
     backgroundColor,
     maxHeight,
+    children,
+    filterColor,
+    filterOpacity,
 }: Props) => {
 
     return (
@@ -32,6 +38,17 @@ const Hero: React.FC<Props> = ({
                 ? <p>{ subTitle }</p>
                 : ''
             }
+
+            {
+                children
+            }
+            <span 
+                className="hero__bg-filter" 
+                style={{
+                    backgroundColor: filterColor, 
+                    opacity: `${filterOpacity}%`,
+                }}
+            />
         </section>
     )
 }

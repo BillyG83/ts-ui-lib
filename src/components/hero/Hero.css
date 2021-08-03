@@ -1,18 +1,37 @@
 .hero {
     align-items: center;
+    background-attachment: fixed;
     background-color: rgb(54, 123, 147);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     height: 100vh;
     justify-content: center;
     padding: 32px;
+    position: relative;
     text-align: center;
     width: 100vw;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+}
+
+.hero * {
+    position: relative;
+    z-index: 1;
+}
+
+.hero__bg-filter {
+    background-color: black;
+    display: block;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
 }
 
 .hero h1 {
@@ -24,5 +43,5 @@
 .hero p {
     color: white;
     display: block;
-    margin: 0;
+    margin: 0 0 16px;
 }
