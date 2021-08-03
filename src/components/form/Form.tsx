@@ -42,7 +42,7 @@ const Form: React.FC = () => {
     }
 
     return (
-        <div>
+        <form>
             <Input 
                 inputId="name-input"
                 inputLabel="enter your full name"
@@ -96,7 +96,7 @@ const Form: React.FC = () => {
             </RadioGroup>
 
             <Button buttonType="submit" buttonId="data-button" text="get data" clickHandle={handleClick} />
-        </div>
+        </form>
     ) 
 }
 
