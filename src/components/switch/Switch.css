@@ -2,18 +2,46 @@
     display: block;
 }
 
-.switch__ui {
+.switch input {
+    position: relative;
+}
+
+.switch input {
+    position: absolute;
+    left: -999999px;
+}
+
+.switch__text {
     display: block;
+    margin-bottom: 4px;
+}
+
+.switch__ui {
+    background-color: white;
+    border-radius: 10px;
+    display: block;
+    height: 20px;
+    overflow: hidden;
+    position: relative;
+    width: 50px;
 }
 
 .switch__toggle {
+    background-color: lightgreen;
+    border-radius: 10px;
     display: block;
+    height: 20px;
+    position: absolute;
+    transition: all 0.2s ease-in-out;
+    width: 20px;
 }
 
 .switch--on .switch__toggle {
-    left: 100%;
+    background-color: lightgreen;
+    left: calc(100% - 20px);
 }
 
 .switch--off .switch__toggle {
+    background-color: gray;
     left: 0%;
 }
