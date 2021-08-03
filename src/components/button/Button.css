@@ -16,3 +16,7 @@
     border: 2px solid var(--whiteEgg);
     color: var(--whiteEgg);
 }
+
+.button + .button {
+    margin: 8px 4px 0;
+}
