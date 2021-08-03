@@ -23,3 +23,7 @@ ul {
 p + p {
   margin-top: 12px;
 }
+
+.wrap {
+  padding: 16px 16px 24px;
+}
