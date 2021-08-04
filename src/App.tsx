@@ -27,6 +27,8 @@ const App: React.FC = () => {
         />
         <Switch 
           switchID="hero-switch"
+          switchLabel="Switch!"
+          switchSize="small"
         />
       </Hero>
       <div className="wrap">
