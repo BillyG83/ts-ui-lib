@@ -8,8 +8,11 @@ interface Props {
     switchColorOn?: string,
     switchID: string,
     switchLabel?: string,
+    switchOffText?: string,
     switchOnByDefault?: boolean,
+    switchOnText?: string,
     switchSize?: 'small' | 'normal' | 'large',
+    switchTextColor?: string,
 }
 
 const Switch: React.FC<Props> = ({
@@ -20,14 +23,22 @@ const Switch: React.FC<Props> = ({
     switchLabel,
     switchOnByDefault = false,
     switchSize = 'normal',
+    switchOnText,
+    switchOffText,
+    switchTextColor = String(color.greyLight),
 }) => {
     const [IsSwitchOn, UseSwitchOn] = useState(switchOnByDefault)
+    const [SwitchText, SetSwitchText] = useState(switchOnByDefault ? switchOnText : switchOffText)
 
     useEffect( () => {
         let root = document.documentElement;
         root.style.setProperty('--switchColorOff', `${switchColorOff}`);
         root.style.setProperty('--switchColorOn', `${switchColorOn}`);
     }, [switchColorOn, switchColorOff])
+
+    useEffect( () => {
+        SetSwitchText(IsSwitchOn ? switchOnText : switchOffText)
+    }, [IsSwitchOn])
 
     const handleChange = () => {
         UseSwitchOn(!IsSwitchOn)
@@ -63,8 +74,13 @@ const Switch: React.FC<Props> = ({
                 >
                     <span 
                         aria-hidden="true"
-                        className="switch__toggle" 
-                    />
+                        className="switch__toggle"
+                        style={{
+                            color: switchTextColor,
+                        }}
+                    >
+                        { SwitchText }
+                    </span>
                 </div>
             </label>
         </div>
