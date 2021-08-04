@@ -27,7 +27,7 @@
 }
 
 .switch__toggle {
-    background-color: lightgreen;
+    background-color: var(--switchColorOn);
     border-radius: 10px;
     display: block;
     height: 20px;
@@ -37,11 +37,43 @@
 }
 
 .switch--on .switch__toggle {
-    background-color: lightgreen;
+    background-color: var(--switchColorOn);
     left: calc(100% - 20px);
 }
 
 .switch--off .switch__toggle {
-    background-color: gray;
+    background-color: var(--switchColorOff);
     left: 0%;
+}
+
+.switch--small .switch__ui {
+    border-radius: 5px;
+    height: 10px;
+    width: 25px;
+}
+
+.switch--small .switch__toggle {
+    border-radius: 5px;
+    height: 10px;
+    width: 10px;
+}
+
+.switch--small.switch--on .switch__toggle {
+    left: calc(100% - 10px);
+}
+
+.switch--small .switch__ui {
+    border-radius: 15px;
+    height: 30px;
+    width: 75px;
+}
+
+.switch--small .switch__toggle {
+    border-radius: 15px;
+    height: 30px;
+    width: 30px;
+}
+
+.switch--small.switch--on .switch__toggle {
+    left: calc(100% - 30px);
 }
