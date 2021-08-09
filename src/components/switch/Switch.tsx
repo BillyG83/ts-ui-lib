@@ -8,12 +8,18 @@ interface Props {
     switchColorOn?: string,
     switchID: string,
     switchLabel?: string,
+    switchName: string,
     switchOffText?: string,
     switchOnByDefault?: boolean,
     switchOnText?: string,
     switchSize?: 'small' | 'normal' | 'large',
     switchTextColor?: string,
-    valueChanged: (id: string, isOn: boolean) => void,
+    valueChanged: (
+        inputType: string,
+        inputName: string, 
+        inputValue: string, 
+        boxChecked: boolean,
+    ) => void,
 }
 
 const Switch: React.FC<Props> = ({
@@ -22,6 +28,7 @@ const Switch: React.FC<Props> = ({
     switchColorOn = String(color.green),
     switchID,
     switchLabel,
+    switchName,
     switchOnByDefault = false,
     switchSize = 'normal',
     switchOnText,
@@ -32,18 +39,27 @@ const Switch: React.FC<Props> = ({
     const [IsSwitchOn, UseSwitchOn] = useState(switchOnByDefault)
     const [SwitchText, SetSwitchText] = useState(switchOnByDefault ? switchOnText : switchOffText)
 
-    useEffect( () => {
+    useEffect(() => {
         let root = document.documentElement;
         root.style.setProperty('--switchColorOff', `${switchColorOff}`);
         root.style.setProperty('--switchColorOn', `${switchColorOn}`);
     }, [switchColorOn, switchColorOff])
 
-    useEffect( () => {
+    useEffect(() => {
         SetSwitchText(IsSwitchOn ? switchOnText : switchOffText)
-        valueChanged && valueChanged(switchID, IsSwitchOn)
-    }, [IsSwitchOn])
+    }, [IsSwitchOn, switchOnText, switchOffText])
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {        
+    const bubbleUpValue = (switchActive: boolean) => {
+        valueChanged && valueChanged(
+            'checkbox',
+            switchName, 
+            switchID, 
+            switchActive,
+        )
+    }
+
+    const handleChange = () => {
+        bubbleUpValue(!IsSwitchOn)   
         UseSwitchOn(!IsSwitchOn)
     }
 
