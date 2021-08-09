@@ -26,7 +26,7 @@ const Input: React.FC<Props> = ({
     valueChanged,
 }: Props) => {
 
-    const isCheckbox: boolean = Boolean(
+    const isCheckboxOrRadio: boolean = Boolean(
         inputType === 'checkbox'
         || inputType === 'radio'
     )
@@ -42,6 +42,7 @@ const Input: React.FC<Props> = ({
 
     const renderInput = (): JSX.Element => (
         <input
+            autoComplete="true"
             id={inputId}
             name={inputName}
             onChange={handleChange}
@@ -70,7 +71,7 @@ const Input: React.FC<Props> = ({
             }
 
             {
-                !isCheckbox 
+                !isCheckboxOrRadio 
                 ? renderInput()
                 : renderCheckbox()
             }
