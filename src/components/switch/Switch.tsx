@@ -13,6 +13,7 @@ interface Props {
     switchOnText?: string,
     switchSize?: 'small' | 'normal' | 'large',
     switchTextColor?: string,
+    valueChanged: (id: string, isOn: boolean) => void,
 }
 
 const Switch: React.FC<Props> = ({
@@ -26,6 +27,7 @@ const Switch: React.FC<Props> = ({
     switchOnText,
     switchOffText,
     switchTextColor = String(color.greyLight),
+    valueChanged,
 }) => {
     const [IsSwitchOn, UseSwitchOn] = useState(switchOnByDefault)
     const [SwitchText, SetSwitchText] = useState(switchOnByDefault ? switchOnText : switchOffText)
@@ -38,9 +40,10 @@ const Switch: React.FC<Props> = ({
 
     useEffect( () => {
         SetSwitchText(IsSwitchOn ? switchOnText : switchOffText)
+        valueChanged && valueChanged(switchID, IsSwitchOn)
     }, [IsSwitchOn])
 
-    const handleChange = () => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {        
         UseSwitchOn(!IsSwitchOn)
     }
 

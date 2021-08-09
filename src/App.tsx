@@ -28,7 +28,12 @@ const App: React.FC = () => {
         <Switch 
           switchID="hero-switch"
           switchLabel="Switch!"
-          switchSize="small"
+          valueChanged={(id, isOn) => { console.log(id, isOn) }}
+        />
+        <Switch 
+          switchID="nintendo-switch"
+          switchLabel="Switch!"
+          valueChanged={(id, isOn) => { console.log(id, isOn) }}
         />
       </Hero>
       <div className="wrap">
