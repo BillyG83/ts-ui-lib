@@ -27,3 +27,7 @@ p + p {
 .wrap {
   padding: 16px 16px 24px;
 }
+
+.spacer {
+  margin-bottom: 16px;
+}
