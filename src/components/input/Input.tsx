@@ -63,7 +63,7 @@ const Input: React.FC<Props> = ({
     )
 
     return (
-        <div className="input">
+        <div data-testid="input" className="input">
             {
                 inputLabel
                 ? <label htmlFor={inputId}>{inputLabel}</label>
