@@ -11,7 +11,6 @@ import Button from './components/button/Button'
 <Button 
     buttonId={'button'} 
     clickHandle={handleClick}
-    theme="dark"
 ></Button>
 ```
 
