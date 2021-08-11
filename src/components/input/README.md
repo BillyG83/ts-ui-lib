@@ -10,10 +10,7 @@ import Input from './components/input/Input'
 ```javascript
 <Input 
     inputId="unique-id"
-    inputLabel="This is the label"
     inputName="unique-name"
-    inputPlaceholder="placeholder text"
-    inputType="text"
     valueChanged={(
         type: string,
         id: string, 
