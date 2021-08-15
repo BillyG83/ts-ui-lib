@@ -1,19 +1,17 @@
 import React from 'react'
+import { InputValues } from '../interface'
 import './Input.css'
+
+type AllowedInputTypes = 'text' | 'password' | 'number' | 'radio' | 'checkbox'
 
 interface Props {
     inputId: string,
     inputLabel?: string,
     inputName: string,
     inputPlaceholder?: string,
-    inputType?: 'text' | 'password' | 'number' | 'radio' | 'checkbox',
+    inputType?: AllowedInputTypes,
     inputValue?: string | number,
-    valueChanged?: (
-        type: string,
-        id: string, 
-        value: string, 
-        checked: boolean
-    ) => void
+    valueChanged: (data: InputValues) => void,
 }
 
 const Input: React.FC<Props> = ({
@@ -31,13 +29,17 @@ const Input: React.FC<Props> = ({
         || inputType === 'radio'
     )
 
+    const bubbleUp = (data: InputValues) => {
+        valueChanged(data)
+    }
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {        
-        valueChanged && valueChanged(
-            inputType,
-            event?.currentTarget?.name,
-            event?.currentTarget?.value,
-            event?.currentTarget?.checked,
-        )
+        bubbleUp({
+            checked: event?.currentTarget?.checked,
+            id: event?.currentTarget?.name,
+            type: inputType,
+            value: event?.currentTarget?.value,
+        })
     }
 
     const renderInput = (): JSX.Element => (
