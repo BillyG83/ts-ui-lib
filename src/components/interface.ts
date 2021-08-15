@@ -12,3 +12,10 @@ export interface UserInterface {
     name: string,
     sex: string,
 }
+
+export interface InputValues {
+    checked?: boolean,
+    id: string, 
+    type: string,
+    value?: string, 
+}
