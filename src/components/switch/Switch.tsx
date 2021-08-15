@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { InputValues } from '../interface'
 import { color } from '../../utils/colors'
 import './Switch.css'
 
@@ -14,12 +15,7 @@ interface Props {
     switchOnText?: string,
     switchSize?: 'small' | 'normal' | 'large',
     switchTextColor?: string,
-    valueChanged: (
-        inputType: string,
-        inputName: string, 
-        inputValue: string, 
-        boxChecked: boolean,
-    ) => void,
+    valueChanged: (data: InputValues) => void,
 }
 
 const Switch: React.FC<Props> = ({
@@ -36,7 +32,7 @@ const Switch: React.FC<Props> = ({
     switchTextColor = String(color.greyLight),
     valueChanged,
 }) => {
-    const [IsSwitchOn, UseSwitchOn] = useState(switchOnByDefault)
+    const [IsSwitchOn, UseIsSwitchOn] = useState(switchOnByDefault)
     const [SwitchText, SetSwitchText] = useState(switchOnByDefault ? switchOnText : switchOffText)
 
     useEffect(() => {
@@ -49,18 +45,18 @@ const Switch: React.FC<Props> = ({
         SetSwitchText(IsSwitchOn ? switchOnText : switchOffText)
     }, [IsSwitchOn, switchOnText, switchOffText])
 
-    const bubbleUpValue = (switchActive: boolean) => {
-        valueChanged && valueChanged(
-            'checkbox',
-            switchName, 
-            switchID, 
-            switchActive,
-        )
+    const bubbleUp = (data: InputValues) => {
+        valueChanged(data)
     }
 
-    const handleChange = () => {
-        bubbleUpValue(!IsSwitchOn)   
-        UseSwitchOn(!IsSwitchOn)
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {        
+        UseIsSwitchOn(!IsSwitchOn)
+        bubbleUp({
+            checked: event?.currentTarget?.checked,
+            id: event?.currentTarget?.id,
+            type: 'checkbox',
+            value: event?.currentTarget?.value,
+        })
     }
 
     return (
@@ -80,8 +76,9 @@ const Switch: React.FC<Props> = ({
                 <input 
                     checked={IsSwitchOn} 
                     id={switchID} 
-                    type="checkbox"
+                    name={switchName}
                     onChange={handleChange}
+                    type="checkbox"
                 />
 
                 <div 
