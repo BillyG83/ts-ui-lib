@@ -5,7 +5,7 @@ import Input from '../input/Input'
 import Switch from '../switch/Switch'
 import Range from '../range/Range'
 
-import { UserInterface } from '../interface'
+import { UserInterface, InputValues } from '../interface'
 
 const initialData: UserInterface = {
     name: '',
@@ -28,19 +28,20 @@ const Form: React.FC = () => {
         console.log(user);
     }
 
-    const inputValueChanged = (
-        inputType: string,
-        inputName: string, 
-        inputValue: string, 
-        boxChecked: boolean,
-    ) => {
-        const dataToUpdate = inputType === 'checkbox'
-            ? boxChecked
-            : inputValue        
+    const inputValueChanged = (data: InputValues) => {
+        const {
+            type,
+            checked,
+            value,
+            id,
+        } = data
+        const dataToUpdate = type === 'checkbox'
+            ? checked
+            : value
         
         setUser((prevState) => ({
             ...prevState,
-            [inputName] : dataToUpdate
+            [id] : dataToUpdate
         }))
     }
 
