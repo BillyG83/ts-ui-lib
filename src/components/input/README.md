@@ -11,12 +11,7 @@ import Input from './components/input/Input'
 <Input 
     inputId="unique-id"
     inputName="unique-name"
-    valueChanged={(
-        type: string,
-        id: string, 
-        value: string, 
-        checked: boolean
-    ) => void}
+    valueChanged={(data: InputValues) => void}
 />
 ```
 
@@ -27,10 +22,14 @@ import Input from './components/input/Input'
 * **inputPlaceholder**?: string *optional*
 * **inputType**?: string *optional*
 * **inputValue**?: string or number *optional*
-* **valueChanged**: function that returns { 
-    type: string,
+* **valueChanged**: pass a custom function that takes InputValues as props
+
+### Interfaces
+```javascript
+interface InputValues {
+    checked?: boolean,
     id: string, 
-    value: string, 
-    checked: boolean
+    type: string,
+    value?: string, 
 }
-          
+```
