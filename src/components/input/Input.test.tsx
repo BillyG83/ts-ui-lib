@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import { fireEvent } from '@testing-library/react'
 import Input from './Input';
+import { InputValues } from '../interface'
+import { type } from 'os';
 
 describe('Input functionality: Text Input', () => {
   let container: HTMLDivElement
@@ -13,11 +15,13 @@ describe('Input functionality: Text Input', () => {
   const inputPlaceholder = 'Input your text here' 
   const inputValue = 'This is a default value'
 
-  const testEvent = (type: string, id: string, value: string, checked: boolean) => {
-    type = testType
-    id = testId
-    value = 'hello'
-    checked = false
+  const testEvent = (data: InputValues) => {
+    return {
+      type: data.type,
+      id: data.id,
+      value: data.value,
+      checked: data.checked
+    }
   }
 
   beforeEach(() => {
@@ -63,5 +67,13 @@ describe('Input functionality: Text Input', () => {
   it('renders the label', () => {
     const textInputLabel = container.querySelector<HTMLLabelElement>('[data-testid="input"] > label')
     expect(textInputLabel?.textContent).toBe(inputLabel)
+  })
+
+  it('fires the test event on change', () => {
+    const textInput = container.querySelector<HTMLInputElement>(`#${testId}`)
+    if (textInput) {
+      textInput.value = 'test'
+      expect(testEvent).toBeCalled
+    }
   })
 })
