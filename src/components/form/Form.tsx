@@ -4,6 +4,7 @@ import RadioGroup from '../radioGroup/RadioGroup'
 import Input from '../input/Input'
 import Switch from '../switch/Switch'
 import Range from '../range/Range'
+import Stepper from '../stepper/Stepper'
 
 import { UserInterface, InputValues } from '../interface'
 
@@ -47,6 +48,11 @@ const Form: React.FC = () => {
 
     return (
         <form onSubmit={(e) => e.preventDefault()}>
+            
+            <div className="spacer">
+                <Stepper title="hot stepper!"/>
+            </div>
+            
             <div className="spacer">
                 <Range
                     rangeId="rangers"
