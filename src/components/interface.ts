@@ -17,5 +17,5 @@ export interface InputValues {
     checked?: boolean,
     id: string, 
     type: string,
-    value?: string, 
+    value?: string | number, 
 }
