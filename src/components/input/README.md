@@ -1,5 +1,5 @@
 # Input
-<p>Input form elements that bubble up their value on change</p>
+<p>Configurable form input element that can be passed a function. This *valueChanged* function with fire each time the inputs value is updated, which it will operate with properties as defined in the *InputValues* Interface</p>
 
 ## import
 ```javascript
