@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
-import { fireEvent } from '@testing-library/react'
 import Hero from './Hero'
 
 describe('Hero Banner', () => {
