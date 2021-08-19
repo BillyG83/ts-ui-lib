@@ -22,7 +22,7 @@
 }
 
 .hero__bg-filter {
-    background-color: black;
+    background-color: transparent;
     display: block;
     height: 100%;
     left: 0;
