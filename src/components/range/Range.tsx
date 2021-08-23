@@ -6,6 +6,7 @@ interface Props {
     rangeMin: number,
     rangeMax: number,
     rangeValue: number,
+    rangeLabel: string,
 }
 
 const Range: React.FC<Props> = ({
@@ -13,14 +14,18 @@ const Range: React.FC<Props> = ({
     rangeMin,
     rangeMax,
     rangeValue,
+    rangeLabel,
 }) => {
     const [currentValue, setCurrentValue] = useState(rangeValue)
+
     const rangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newRangeValue = Number(event.currentTarget.value)
         setCurrentValue(newRangeValue)
     }
     return (
         <div className="range">
+            <label htmlFor={rangeId}>{rangeLabel}</label>
+            <p>{currentValue} of {rangeMax}</p>
             <input 
                 id={rangeId}
                 type="range" 

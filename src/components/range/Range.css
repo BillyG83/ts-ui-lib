@@ -1,3 +1,18 @@
 .range {
     display: block;
 }
+
+.range label {
+    font-size: 1.2rem;
+    display: block;
+}
+
+.range p {
+    font-size: 0.8rem;
+    margin: 4px 0;
+}
+
+.range input {
+    display: block;
+    width: 100%;
+}
