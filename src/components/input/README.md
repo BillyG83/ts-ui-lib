@@ -25,6 +25,10 @@ import Input from './components/input/Input'
 * **valueChanged**: pass a custom function that takes InputValues as props
 
 ### Interfaces
+Note that value and checked are optional.
+If input type is text, password or number, expect value to be returned
+If input type is checkbox or radio, expect checked to be returned
+
 ```javascript
 interface InputValues {
     checked?: boolean,
