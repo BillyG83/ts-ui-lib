@@ -2,25 +2,25 @@ import React  from "react"
 import './Hero.css'
 
 interface Props {
-    title: string,
-    subTitle?: string
     backgroundColor?: string,
     backgroundImage?: string,
-    maxHeight?: string,
     children?: JSX.Element | JSX.Element[];
     filterColor?: string,
     filterOpacity?: number
+    maxHeight?: string,
+    subTitle?: string
+    title: string,
 }
 
 const Hero: React.FC<Props> = ({
-    title,
-    subTitle,
-    backgroundImage,
     backgroundColor,
-    maxHeight,
+    backgroundImage,
     children,
     filterColor,
     filterOpacity,
+    maxHeight,
+    subTitle,
+    title,
 }: Props) => {
 
     return (
