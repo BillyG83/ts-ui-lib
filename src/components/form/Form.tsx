@@ -30,12 +30,7 @@ const Form: React.FC = () => {
     }
 
     const inputValueChanged = (data: InputValues) => {
-        const {
-            type,
-            checked,
-            value,
-            id,
-        } = data
+        const { checked, id, type, value } = data
         const dataToUpdate = type === 'checkbox'
             ? checked
             : value
@@ -56,9 +51,10 @@ const Form: React.FC = () => {
             <div className="spacer">
                 <Range
                     rangeId="rangers"
-                    rangeMax={100}
+                    rangeMax={10}
                     rangeMin={0}
-                    rangeValue={50}
+                    rangeValue={5}
+                    rangeLabel="Score something with a range slider"
                 ></Range>
             </div>
 
