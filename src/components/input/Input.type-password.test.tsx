@@ -2,17 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import Input from './Input';
 import { InputValues } from '../interface'
-import { Type } from 'typescript';
 
-describe('Input functionality: Number Input', () => {
+describe('Input functionality: Password Input', () => {
   let container: HTMLDivElement
 
-  const testType = 'number'
+  const testType = 'password'
   const testId = 'input-test'
   const testName = 'Input'
   const testInputLabel = 'Test this input'
-  const testInputPlaceholder = 'Input your number here' 
-  const testInputValue = 420
+  const testInputPlaceholder = 'Input your text here' 
+  const testInputValue = 'This is a default value'
 
   const testEvent = (data: InputValues) => {
     return {
@@ -44,34 +43,34 @@ describe('Input functionality: Number Input', () => {
   })
 
   it('renders the component', () => {
-    const numberInput = container.querySelector<HTMLDivElement>(`#${testId}`)
-    expect(numberInput).toBeInTheDocument()
+    const textInput = container.querySelector<HTMLDivElement>(`#${testId}`)
+    expect(textInput).toBeInTheDocument()
   })
 
   it('renders the input type correctly', () => {
-    const numberInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    expect(numberInput?.type).toBe(testType)
+    const textInput = container.querySelector<HTMLInputElement>(`#${testId}`)
+    expect(textInput?.type).toBe(testType)
   })
 
   it('renders the default value', () => {
-    const numberInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    expect(numberInput?.value).toBe(`${testInputValue}`)
+    const textInput = container.querySelector<HTMLInputElement>(`#${testId}`)
+    expect(textInput?.value).toBe(testInputValue)
   })
 
   it('renders the placeholder', () => {
-    const numberInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    expect(numberInput?.placeholder).toBe(testInputPlaceholder)
+    const textInput = container.querySelector<HTMLInputElement>(`#${testId}`)
+    expect(textInput?.placeholder).toBe(testInputPlaceholder)
   })
 
   it('renders the label', () => {
-    const numberInputLabel = container.querySelector<HTMLLabelElement>('[data-testid="input"] > label')
-    expect(numberInputLabel?.textContent).toBe(testInputLabel)
+    const textInputLabel = container.querySelector<HTMLLabelElement>('[data-testid="input"] > label')
+    expect(textInputLabel?.textContent).toBe(testInputLabel)
   })
 
   it('fires the test event on change', () => {
-    const numberInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    if (numberInput) {
-      numberInput.value = '404'
+    const textInput = container.querySelector<HTMLInputElement>(`#${testId}`)
+    if (textInput) {
+      textInput.value = 'test'
       expect(testEvent).toBeCalled
     }
   })
