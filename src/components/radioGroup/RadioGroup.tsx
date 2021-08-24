@@ -1,18 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Input from '../input/Input'
+import { InputValues } from '../interface'
 import './RadioGroup.css'
 
 type Props = {
-  id: string,
-  children: JSX.Element | JSX.Element[];
+  radioChanged?: (data: InputValues) => void
+  radioGroupId: string,
+  radioItems: Array<string>,
 }
 
 const RadioGroup: React.FC<Props> = ({
-  id,
-  children
-}) =>  (
-  <fieldset id={id} className="radio-group">
-    { children }
-  </fieldset>
-)
+  radioChanged,
+  radioGroupId,
+  radioItems,
+}) =>  {
+
+  const selectionChanged = (data: InputValues) => {
+    radioChanged && radioChanged(data)
+  }
+
+  return (
+    <fieldset 
+      id={radioGroupId} 
+      className="radio-group"
+    >
+      {
+        radioItems.map((radio, i) => (
+          <Input 
+            inputId={`radio-${radio}`}
+            inputLabel={radio}
+            inputName={radioGroupId}
+            inputType="radio"
+            inputValue={radio}
+            key={i}
+            valueChanged={(data)=>(selectionChanged(data))}
+          />
+        ))
+      }
+    </fieldset>
+  )
+}
 
 export default RadioGroup
