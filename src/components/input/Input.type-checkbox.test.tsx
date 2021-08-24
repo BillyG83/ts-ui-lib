@@ -39,17 +39,17 @@ describe('Input functionality: Checkbox Input', () => {
   })
 
   it('renders the component', () => {
-    const textInput = container.querySelector<HTMLDivElement>(`#${testId}`)
-    expect(textInput).toBeInTheDocument()
+    const checkboxInput = container.querySelector<HTMLDivElement>(`#${testId}`)
+    expect(checkboxInput).toBeInTheDocument()
   })
 
   it('renders the input type correctly', () => {
-    const textInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    expect(textInput?.type).toBe(testType)
+    const checkboxInput = container.querySelector<HTMLInputElement>(`#${testId}`)
+    expect(checkboxInput?.type).toBe(testType)
   })
 
   it('renders the label', () => {
-    const textInputLabel = container.querySelector<HTMLLabelElement>('[data-testid="input"] > label')
-    expect(textInputLabel?.textContent).toBe(testInputLabel)
+    const checkboxInputLabel = container.querySelector<HTMLInputElement>('[data-testid="input"]')
+    expect(checkboxInputLabel?.textContent).toBe(testInputLabel)
   })
 })

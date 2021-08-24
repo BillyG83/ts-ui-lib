@@ -39,17 +39,17 @@ describe('Input functionality: Radio Input', () => {
   })
 
   it('renders the component', () => {
-    const textInput = container.querySelector<HTMLDivElement>(`#${testId}`)
-    expect(textInput).toBeInTheDocument()
+    const radioInput = container.querySelector<HTMLDivElement>(`#${testId}`)
+    expect(radioInput).toBeInTheDocument()
   })
 
   it('renders the input type correctly', () => {
-    const textInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    expect(textInput?.type).toBe(testType)
+    const radioInput = container.querySelector<HTMLInputElement>(`#${testId}`)
+    expect(radioInput?.type).toBe(testType)
   })
 
   it('renders the label', () => {
-    const textInputLabel = container.querySelector<HTMLLabelElement>('[data-testid="input"] > label')
-    expect(textInputLabel?.textContent).toBe(testInputLabel)
+    const radioInputLabel = container.querySelector<HTMLLabelElement>('[data-testid="input"] > label')
+    expect(radioInputLabel?.textContent).toBe(testInputLabel)
   })
 })

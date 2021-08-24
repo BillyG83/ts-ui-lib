@@ -43,34 +43,34 @@ describe('Input functionality: Password Input', () => {
   })
 
   it('renders the component', () => {
-    const textInput = container.querySelector<HTMLDivElement>(`#${testId}`)
-    expect(textInput).toBeInTheDocument()
+    const passwordInput = container.querySelector<HTMLDivElement>(`#${testId}`)
+    expect(passwordInput).toBeInTheDocument()
   })
 
   it('renders the input type correctly', () => {
-    const textInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    expect(textInput?.type).toBe(testType)
+    const passwordInput = container.querySelector<HTMLInputElement>(`#${testId}`)
+    expect(passwordInput?.type).toBe(testType)
   })
 
   it('renders the default value', () => {
-    const textInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    expect(textInput?.value).toBe(testInputValue)
+    const passwordInput = container.querySelector<HTMLInputElement>(`#${testId}`)
+    expect(passwordInput?.value).toBe(testInputValue)
   })
 
   it('renders the placeholder', () => {
-    const textInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    expect(textInput?.placeholder).toBe(testInputPlaceholder)
+    const passwordInput = container.querySelector<HTMLInputElement>(`#${testId}`)
+    expect(passwordInput?.placeholder).toBe(testInputPlaceholder)
   })
 
   it('renders the label', () => {
-    const textInputLabel = container.querySelector<HTMLLabelElement>('[data-testid="input"] > label')
-    expect(textInputLabel?.textContent).toBe(testInputLabel)
+    const passwordInputLabel = container.querySelector<HTMLLabelElement>('[data-testid="input"] > label')
+    expect(passwordInputLabel?.textContent).toBe(testInputLabel)
   })
 
   it('fires the test event on change', () => {
-    const textInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    if (textInput) {
-      textInput.value = 'test'
+    const passwordInput = container.querySelector<HTMLInputElement>(`#${testId}`)
+    if (passwordInput) {
+      passwordInput.value = 'test'
       expect(testEvent).toBeCalled
     }
   })
