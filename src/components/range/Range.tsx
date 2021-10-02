@@ -24,8 +24,8 @@ const Range: React.FC<Props> = ({
     const rangeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newRangeValue = Number(event.currentTarget.value)
         setCurrentValue(newRangeValue)
-        
     }
+    
     useEffect(() => {
         rangeUpdated({
             checked: false,
@@ -40,12 +40,13 @@ const Range: React.FC<Props> = ({
             <label htmlFor={rangeId}>{rangeLabel}</label>
             <p>{currentValue} of {rangeMax}</p>
             <input 
+                data-testid={rangeId}
                 id={rangeId}
-                type="range" 
-                min={rangeMin} 
                 max={rangeMax} 
-                value={currentValue} 
+                min={rangeMin} 
                 onChange={rangeChange}
+                type="range" 
+                value={currentValue} 
             />
         </div>
     )
