@@ -127,7 +127,7 @@ const Form: React.FC = () => {
             </div>
 
             <div className="spacer">
-                <RadioGroup radioGroupId="sex" radioItems={['male', 'female']} />
+                <RadioGroup radioChanged={inputValueChanged} radioGroupId="sex" radioItems={['male', 'female']} />
             </div>
 
             <div className="spacer">
