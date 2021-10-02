@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
+import { fireEvent } from '@testing-library/react';
 import Input from './Input';
 import { InputValues } from '../interface'
-import { Type } from 'typescript';
 
 describe('Input functionality: Number Input', () => {
   let container: HTMLDivElement
@@ -14,14 +14,16 @@ describe('Input functionality: Number Input', () => {
   const testInputPlaceholder = 'Input your number here' 
   const testInputValue = 420
 
-  const testEvent = (data: InputValues) => {
-    return {
-      type: data.type,
-      id: data.id,
-      value: data.value,
-      checked: data.checked
+  const mockedFunction = jest.fn(
+    (data: InputValues) => {
+      return {
+        type: data.type,
+        id: data.id,
+        value: data.value,
+        checked: data.checked
+      }
     }
-  }
+  );
 
   beforeEach(() => {
     container = document.createElement('div')
@@ -34,7 +36,7 @@ describe('Input functionality: Number Input', () => {
         inputPlaceholder={testInputPlaceholder}
         inputType={testType}
         inputValue={testInputValue}
-        valueChanged={testEvent}
+        valueChanged={mockedFunction}
       />, container)
   })
 
@@ -44,7 +46,7 @@ describe('Input functionality: Number Input', () => {
   })
 
   it('renders the component', () => {
-    const numberInput = container.querySelector<HTMLDivElement>(`#${testId}`)
+    const numberInput = container.querySelector<HTMLInputElement>(`#${testId}`)
     expect(numberInput).toBeInTheDocument()
   })
 
@@ -68,11 +70,14 @@ describe('Input functionality: Number Input', () => {
     expect(numberInputLabel?.textContent).toBe(testInputLabel)
   })
 
-  it('fires the test event on change', () => {
+  it('fires the mocked function on change with correct data', () => {
     const numberInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    if (numberInput) {
-      numberInput.value = '404'
-      expect(testEvent).toBeCalled
-    }
+    numberInput && fireEvent.change(numberInput, {target: {value: 404}})
+    expect(mockedFunction).toBeCalledWith({
+      checked: false,
+      id: testId,
+      type: testType,
+      value: '404',
+    })
   })
 })

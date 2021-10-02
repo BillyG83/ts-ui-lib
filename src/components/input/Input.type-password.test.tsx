@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
+import { fireEvent } from '@testing-library/react';
 import Input from './Input';
 import { InputValues } from '../interface'
 
@@ -13,14 +14,16 @@ describe('Input functionality: Password Input', () => {
   const testInputPlaceholder = 'Input your text here' 
   const testInputValue = 'This is a default value'
 
-  const testEvent = (data: InputValues) => {
-    return {
-      type: data.type,
-      id: data.id,
-      value: data.value,
-      checked: data.checked
+  const mockedFunction = jest.fn(
+    (data: InputValues) => {
+      return {
+        type: data.type,
+        id: data.id,
+        value: data.value,
+        checked: data.checked
+      }
     }
-  }
+  );
 
   beforeEach(() => {
     container = document.createElement('div')
@@ -33,7 +36,7 @@ describe('Input functionality: Password Input', () => {
         inputPlaceholder={testInputPlaceholder}
         inputType={testType}
         inputValue={testInputValue}
-        valueChanged={testEvent}
+        valueChanged={mockedFunction}
       />, container)
   })
 
@@ -43,7 +46,7 @@ describe('Input functionality: Password Input', () => {
   })
 
   it('renders the component', () => {
-    const passwordInput = container.querySelector<HTMLDivElement>(`#${testId}`)
+    const passwordInput = container.querySelector<HTMLInputElement>(`#${testId}`)
     expect(passwordInput).toBeInTheDocument()
   })
 
@@ -67,11 +70,14 @@ describe('Input functionality: Password Input', () => {
     expect(passwordInputLabel?.textContent).toBe(testInputLabel)
   })
 
-  it('fires the test event on change', () => {
+  it('fires the mocked function on change with correct data', () => {
     const passwordInput = container.querySelector<HTMLInputElement>(`#${testId}`)
-    if (passwordInput) {
-      passwordInput.value = 'test'
-      expect(testEvent).toBeCalled
-    }
+    passwordInput && fireEvent.change(passwordInput, {target: {value: 'new-test-value'}})
+    expect(mockedFunction).toBeCalledWith({
+      checked: false,
+      id: testId,
+      type: testType,
+      value: 'new-test-value',
+    })
   })
 })

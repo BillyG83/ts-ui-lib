@@ -33,10 +33,10 @@ const Input: React.FC<Props> = ({
         valueChanged(data)
     }
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {        
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {    
         bubbleUp({
             checked: event?.currentTarget?.checked,
-            id: event?.currentTarget?.name,
+            id: event?.currentTarget?.id,
             type: inputType,
             value: event?.currentTarget?.value,
         })
