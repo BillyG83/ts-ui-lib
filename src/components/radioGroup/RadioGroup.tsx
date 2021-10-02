@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Input from '../input/Input'
 import { InputValues } from '../interface'
 import './RadioGroup.css'
