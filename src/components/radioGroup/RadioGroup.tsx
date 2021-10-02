@@ -14,10 +14,8 @@ const RadioGroup: React.FC<Props> = ({
   radioGroupId,
   radioItems,
 }) =>  {
-  const [ selected, setSelected ] = useState('')
-  
   const selectionChanged = (data: InputValues) => {
-    setSelected(String(data.value))
+    data.id = radioGroupId
     radioChanged && radioChanged(data)
   }
 
@@ -25,7 +23,6 @@ const RadioGroup: React.FC<Props> = ({
     <fieldset 
       id={radioGroupId} 
       className="radio-group"
-      data-selected={selected}
     >
       {
         radioItems.map((radio, i) => (

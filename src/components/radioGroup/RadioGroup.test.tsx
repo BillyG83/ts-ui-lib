@@ -10,14 +10,16 @@ describe('Input functionality: Radio Input', () => {
   const testId = 'radio-group-test'
   const testItemsArray = ['John', 'Paul', 'George', 'Ringo']
 
-  const testEvent = (data: InputValues) => {
-    return {
-      type: data.type,
-      id: data.id,
-      value: data.value,
-      checked: data.checked
+  const mockedFunction = jest.fn(
+    (data: InputValues) => {
+      return {
+        type: data.type,
+        id: data.id,
+        value: data.value,
+        checked: data.checked
+      }
     }
-  }
+  );
 
   beforeEach(() => {
     container = document.createElement('div')
@@ -26,7 +28,7 @@ describe('Input functionality: Radio Input', () => {
       <RadioGroup 
         radioGroupId={testId}
         radioItems={testItemsArray}
-        radioChanged={testEvent}
+        radioChanged={mockedFunction}
       />, container)
   })
 
@@ -36,7 +38,7 @@ describe('Input functionality: Radio Input', () => {
   })
 
   it('renders the component', () => {
-    const radioGroup = container.querySelector<HTMLInputElement>(`#${testId}`)
+    const radioGroup = container.querySelector<HTMLFieldSetElement>(`#${testId}`)
     expect(radioGroup).toBeInTheDocument()
   })
 
@@ -45,16 +47,17 @@ describe('Input functionality: Radio Input', () => {
     expect(radioInputs.length).toBe(testItemsArray.length)
   })
 
-  it('renders each radio item', async () => {
-    const radioInputs = container.querySelectorAll<HTMLInputElement>('[data-testid="input"]')
-    fireEvent.click(radioInputs[0])
-    expect(testEvent).toBeCalled
-  })
-
-  it('selection is stored as data property', async () => {
-    const radioGroup = container.querySelector<HTMLInputElement>(`#${testId}`)
+  it('bubbles up expected data when child radio is clicked', async () => {
+    const radioGroup = container.querySelector<HTMLFieldSetElement>(`#${testId}`)
     const radioInputs = container.querySelectorAll<HTMLInputElement>('[data-testid="input"] input')
     radioInputs && fireEvent.click(radioInputs[0])
-    expect(radioGroup?.dataset?.selected).toBe(testItemsArray[0])
+    expect(mockedFunction).toBeCalledWith(
+      {
+        type: 'radio',
+        id: testId,
+        value: 'John',
+        checked: true
+      }
+    )
   })
 })
